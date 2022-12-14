@@ -21,21 +21,21 @@ use App\Http\Controllers\Auth\AdminLoginController;
 
 Route::get('/', [HomeController::class,'index']);
 
-Route::get('/admindashboard', function () {
-    return view('admindash-board');
-})->middleware(['auth', 'verified'])->name('Admindashboard');
+//Route::get('/admindashboard', function () {
+ //   return view('admindash-board');
+//})->middleware(['auth', 'verified'])->name('Admindashboard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/researcher-dashboard', function () {
-    return view('researcher-dashboard');
-})->middleware(['auth', 'verified'])->name('researcher-dashboard');
+//Route::get('/researcher-dashboard', function () {
+  //  return view('researcher-dashboard');
+//})->middleware(['auth', 'verified'])->name('researcher-dashboard');
 
-Route::get('/reviewer-dashboard', function () {
-    return view('reviewer-dashboard');
-})->middleware(['auth', 'verified'])->name('reviewer-dashboard');
+//Route::get('/reviewer-dashboard', function () {
+ //   return view('reviewer-dashboard');
+//})->middleware(['auth', 'verified'])->name('reviewer-dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
