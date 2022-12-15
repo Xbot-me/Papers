@@ -19,7 +19,11 @@ use App\Http\Controllers\Auth\AdminLoginController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/all-categories',[HomeController::class,'category'])->name('category');
+Route::get('/all-papers',[HomeController::class,'allpapers'])->name('allpapers');
+Route::get('/about-us',[HomeController::class,'aboutus'])->name('aboutus');
+Route::get('/instructions',[HomeController::class,'instruction'])->name('instruction');
 
 Route::get('/admindashboard', function () {
     return view('admindash-board');
@@ -52,7 +56,7 @@ Route::post('/admin/login',[AdminLoginController::class,'login'])->name('admin.l
 
 //journal routes
 
-Route::get('/dashboard',[AuthorJournalController::class,'index']);
+Route::get('/journals',[AuthorJournalController::class,'index']);
 Route::get('/journals/create',[AuthorJournalController::class,'create']);
 Route::get('/journals/{id}',[AuthorJournalController::class,'show']);
 Route::post('/journals',[AuthorJournalController::class,'store']);

@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
             $filename = pathinfo($trimed,PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore1 = $filename.'.'.$extension;
-            $path = $file->storeAs("profile",$fileNameToStore1);
+            $path = $file->storeAs("public/profile",$fileNameToStore1);
         }
        //dd($request->university_id);
         $user = User::create([

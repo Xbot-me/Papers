@@ -4,7 +4,7 @@
             title: {
                 validators: {
                         stringLength: {
-                        max: 30,
+                        max: 100,
                     },
                         notEmpty: {
                         message: 'Please Article title'
@@ -15,7 +15,7 @@
             abstract: {
                 validators: {
                      stringLength: {
-                        max: 200,
+                        min: 200,
                     },
                     notEmpty: {
                         message: 'Please enter abstract'
@@ -170,9 +170,7 @@
 
             image: {
                 validators: {
-                  notEmpty: {
-                      message: 'Please add an image.'
-                  },
+                 
                    file: {
                       extension: 'png,jpeg,JPG,jpg,PNG',
                       message: 'Please add valid image.'

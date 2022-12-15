@@ -8,6 +8,7 @@ use App\Models\JournalsImage;
 use App\Models\User;
 use App\Models\Category;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class AuthorJournalController extends Controller
 {
@@ -53,7 +54,7 @@ class AuthorJournalController extends Controller
         $journal->category_id = $request->category_id;
         $journal->user_id = auth()->user()->id;
         $journal->save();
-        
+
         $journalId = $journal->id;
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -61,7 +62,7 @@ class AuthorJournalController extends Controller
             $filename = pathinfo($takeFile,PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore1 = $filename.'.'.$extension;
-            $path = $file->storeAs("journals/".$journalId,$fileNameToStore1);
+            $path = $file->storeAs("public/journals/".$journalId,$fileNameToStore1);
             $journals = new JournalsImage;
             $journals->journal_id = $journalId;
             $journals->image = $path;
@@ -79,30 +80,37 @@ class AuthorJournalController extends Controller
             //file name to store
             $fileNameToStore = $filename.'.'.$extension;
             //upload images
-            $path = $pdf->storeAs("journals/".$journalId, $fileNameToStore);
+            $path = $pdf->storeAs("public/journals/".$journalId, $fileNameToStore);
+            $journals = new JournalsImage;
+            $journals->journal_id = $journalId;
+            $journals->pdf = $path;
+            $journals->save();
       }
       //handle doc upload
-      if ($request->hasFile('doc')) {
-        $doc = $request->file('doc');
-            //get file name with extension
-            $takeFile = $doc->getClientOriginalName();
-            //get just file name
-            $filename = pathinfo($takeFile, PATHINFO_FILENAME);
-            //get just extension
-            $extension = $doc->getClientOriginalExtension();
-            //file name to store
-            $fileNameToStore = $filename.'.'.$extension;
-            //upload images
-            $path = $doc->storeAs("journals/".$journalId, $fileNameToStore);
-      }
+
       return redirect('/journals/create')->with('success', 'Journal is submitted. We will let you know if reviewer response.');
 
     }
     public function show($id)
     {
-        $journal = Journal::find($id);
-        
-        return view('journal.single')->with('journal',$journal);
+        $id_d = (int)$id;
+       // \DB::enableQueryLog();
+       // $journals = DB::table('journals')
+       // ->join('journals_images','journals.id','=','journals_images.journal_id')
+        //->select("*");
+        //->where('journals.id','=','1');
+
+       // $pdf = Storage::url($journal->pdf);
+      // $journal = Journal::with('journalsImage')->get();
+      //$journal = Journal::join('journals_images','journals_images.journal_id','=','journals.id')->where('journals.id','=',1)->get();
+      //$journal = JournalsImage::join('journals','journals.id','=','journals_images.journal_id')->where('journals.id',$id)->get();
+      $journal = Journal::find($id);
+      $journal_pdf = JournalsImage::where('journal_id','=',$id_d)->get()->first();
+     //dd($id);
+      //  dd($journal_pdf->pdf,\DB::getQueryLog());
+      $pdf = Storage::url($journal_pdf->pdf);
+      //dd($pdf);
+        return view('journal.single')->with('journal',$journal)->with('pdf',$pdf);
     }
 
 }
