@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Journal;
+use App\Models\JournalsImage;
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Http\Request;
 use DB;
 class HomeController extends Controller
@@ -19,8 +23,11 @@ class HomeController extends Controller
                         'journals.a1fname as a1fname',
                         'journals.a1lname as a1lname')
                         ->orderBy('journals.created_at','desc')
-                        ->paginate(3);
+                        ->paginate(10);
                         //dd($journals[0]);
+        // $users = DB::table('users')
+        //             ->select('users.name as uname',
+        //                 'users.image as uimage');
         return view('welcome')->with('journals',$journals)->with('category',$category);
     }
     public function category()
@@ -38,6 +45,21 @@ class HomeController extends Controller
         $category = Category::all();
         return view('instructions')->with('category',$category);
     }
+    public function editorialmember()
+    {
+        $category = Category::all();
+        return view('editorialmember')->with('category',$category);
+    }
+    public function paperview($id)
+    {
+        $id_d = (int)$id;
+        $journal = Journal::find($id);
+        $journal_pdf = JournalsImage::where('journal_id','=',$id_d)->get()->first();
+       //dd($id);
+        //  dd($journal_pdf->pdf,\DB::getQueryLog());
+        $pdf = Storage::url($journal_pdf->pdf);
+        return view('paperview')->with('journal',$journal)->with('pdf',$pdf);
+    }
     public function allpapers()
     {
         $category = Category::all();
@@ -50,7 +72,9 @@ class HomeController extends Controller
                         'journals.a1fname as a1fname',
                         'journals.a1lname as a1lname')
                         ->orderBy('journals.created_at','desc')
-                        ->paginate(3);
+                        ->paginate(5);
+
+                       // dd($journals);
         return view('allpapers')->with('journals',$journals)->with('category',$category);
     }
 }

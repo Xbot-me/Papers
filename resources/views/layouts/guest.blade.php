@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tailwind Project</title>
+    <title>Research Project</title>
 
     <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet" type="text/css" >
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
+    <script src="{{asset('js/pdfobject.js')}}"></script>
     <style>
+      .pdfobject-container { height:100rem; border: 1rem solid rgba(0,0,0,.1); }
 
       .backgroundImage{
         background-image: image('img/headBackground.jpg');
@@ -34,7 +35,7 @@
                     <div>
                       <!-- Website Logo -->
                       <a href="#" class="flex items-center py-4 px-2">
-                        <img src="img/logo-ju.png" alt="Logo" class="h-16 w-64 mr-2">
+                        <img src="{{ asset("img/logo-ju.png") }}" alt="Logo" class="h-16 w-64 mr-2">
 
                       </a>
                     </div>
@@ -46,7 +47,7 @@
 
                       <a href="{{ route('allpapers') }}" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">All Papers</a>
 
-                      <a href="editorialboard.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Editorial Board</a>
+                      <a href="{{ route('editorialmember') }}" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Editorial Board</a>
 
                       <a href="{{ route('aboutus') }}" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">About Us</a>
 

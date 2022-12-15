@@ -125,7 +125,7 @@
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
     color: var(--dark);
-    font-weight: 500;
+    font-weight: 400;
     border-left: 3px solid var(--light);
     border-radius: 0 30px 30px 0;
     outline: none;
@@ -133,14 +133,14 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
-    background: #FFFFFF;
+    color: black;
+    background: #e25858ee;
     border-color: var(--primary);
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
