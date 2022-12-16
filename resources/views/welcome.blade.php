@@ -55,7 +55,7 @@
             <h1 class="bg-blue-800 text-xl font-bold p-1 text-white  ">Categories</h1>
             <ul class="text-left pl-10 list-disc mt-2">
                 @foreach ($category as $categories )
-                    <li  class=" text-l ">{{ $categories->title }}</li>
+                    <a href="/category/{{ $categories->id }}"><li  class=" text-l ">{{ $categories->title }}</li></a>
                 @endforeach
 
 

@@ -10,6 +10,6 @@ class Category extends Model
     use HasFactory;
     public function journals()
     {
-        return $this->hasMany(Shop::class);
+        return $this->hasMany(Journal::class);
     }
 }

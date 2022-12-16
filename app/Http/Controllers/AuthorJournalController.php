@@ -74,7 +74,8 @@ class AuthorJournalController extends Controller
             //get file name with extension
             $takeFile = $pdf->getClientOriginalName();
             //get just file name
-            $filename = pathinfo($takeFile, PATHINFO_FILENAME);
+            $filenameSub = str_replace(' ','-',$takeFile);
+            $filename = pathinfo($filenameSub, PATHINFO_FILENAME);
             //get just extension
             $extension = $pdf->getClientOriginalExtension();
             //file name to store
@@ -109,7 +110,7 @@ class AuthorJournalController extends Controller
      //dd($id);
       //  dd($journal_pdf->pdf,\DB::getQueryLog());
       $pdf = Storage::url($journal_pdf->pdf);
-      //dd($pdf);
+    //   dd($pdf);
         return view('journal.single')->with('journal',$journal)->with('pdf',$pdf);
     }
 

@@ -60,12 +60,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        $journals = Journal::with('category')->get();
+        //\DB::enableQueryLog();
+        //dd($id);
+        $journals = Journal::where('category_id',$id)->with('category')->get();
+
         //$cat2 = $cat->find($category);
         //$journals = Journal::find();
-        return view();
+
+       // dd($journals,\DB::getQueryLog());
+
+        return view('category.show')->with('journals',$journals);
 
     }
 

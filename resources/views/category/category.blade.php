@@ -27,7 +27,7 @@
           <p><b>{{$categories->title}}</b></p>
         </td>
         <td>
-          <b><a class="btn btn-warning" href="/category/{{$categories->id}}">Edit</a></b>
+          <b><a class="btn btn-warning" href="/admin/category/{{$categories->id}}">Edit</a></b>
         </td>
         <td>
         <b>

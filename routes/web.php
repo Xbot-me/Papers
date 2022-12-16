@@ -94,7 +94,7 @@ Route::post('/journals',[AuthorJournalController::class,'store'])->middleware('a
 
 Route::get('admin/categories',[CategoryController::class,'index'])->name('viewcategory');
 Route::get('admin/category/create',[CategoryController::class,'create'])->name('createcategory');
-Route::get('admin/category/{id}',[CategoryController::class,'show']);
+Route::get('category/{id}',[CategoryController::class,'show'])->name('singlecategory');
 Route::post('admin/category',[CategoryController::class,'store']);
 Route::get('admin/category/{id}',[CategoryController::class,'edit']);
 Route::post('admin/category/{id}',[CategoryController::class,'update']);
