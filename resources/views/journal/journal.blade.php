@@ -42,7 +42,7 @@
     @else
       <div class="col-md-8 col-md-offset-2">
         <div class="panel-heading"><h3>You don't have any Journal yet.</h3>
-        <a href="journals/create" class="btn btn-primary">create now</a>
+        <a href="journals/create" class="btn btn-primary bg-green-700">create now</a>
         </div>
       </div>
   @endif

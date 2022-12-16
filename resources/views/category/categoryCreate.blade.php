@@ -5,7 +5,7 @@
     <br>
     @if(!$category == '')
     <h1 align="center">Category Edit Form</h1> <br>
-    <form action="{{url('/category/'.$category->id)}}" method="POST"  class="form-horizontal" id="category_form">
+    <form action="{{url('admin/category/'.$category->id)}}" method="POST"  class="form-horizontal" id="category_form">
         {{ csrf_field() }}
          <!-- Text input-->
          <div class="form-group">
@@ -17,12 +17,12 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4 inputGroupContainer">
-    <input type="submit" Value="Submit" class="btn btn-primary">
+    <input type="submit" Value="Submit" class="btn btn-primary bg-green-700">
             </div>
     </form>
     @else
     <h1 align="center">Category FORM</h1> <br>
-    <form action="{{url('category')}}" method="POST"  class="form-horizontal" id="category_form">
+    <form action="{{url('admin/category')}}" method="POST"  class="form-horizontal" id="category_form">
         {{ csrf_field() }}
          <!-- Text input-->
          <div class="form-group">
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4 inputGroupContainer">
-    <input type="submit" Value="Submit" class="btn btn-primary">
+    <input type="submit" Value="Submit" class="btn btn-primary bg-green-700">
             </div>
     </form>
     @endif

@@ -1,8 +1,6 @@
+
 @extends('layouts.app')
 @section('content')
-@include('layouts.messages')
+  <h1> Reviewer Show </h1>
 
-
-
-
-@endsection
+ @endsection

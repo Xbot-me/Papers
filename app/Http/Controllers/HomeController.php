@@ -8,7 +8,7 @@ use App\Models\JournalsImage;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB as DB;
 class HomeController extends Controller
 {
     public function index()

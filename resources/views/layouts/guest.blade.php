@@ -55,10 +55,35 @@
                     </div>
                   </div>
                   <!-- Secondary Navbar items -->
+
+                  @if (auth()->guard('web')->user())
+
+                  {{-- <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                  Logout
+                </a> --}}
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                  style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+
+              <div class="hidden md:flex items-center space-x-3 ">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log Out</a>
+
+                <a href="{{ route('dashboard') }}" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Dashboard</a>
+              </div>
+
+              @else
+
                   <div class="hidden md:flex items-center space-x-3 ">
                     <a href="{{ route('login') }}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</a>
                     <a href="{{ route('register') }}" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a>
                   </div>
+
+                @endif
                   <!-- Mobile menu button -->
                   <div class="md:hidden flex items-center">
                     <button class="outline-none mobile-menu-button">

@@ -87,7 +87,7 @@
                           <div class="col-md-8 col-md-offset-2 inputGroupContainer">
                         <input name="a1email" placeholder="Email" class="form-control"  type="email">
                           </div>
-                        </div>
+                      </div>
 
                         <!-- Author 2-->
                         <div class="form-group">
@@ -161,7 +161,7 @@
                                                 </div>
                                               </div>
 
-                                              
+
           <!-- Text input-->
         <div class="form-group">
           <label class="col-md-8 col-md-offset-2 control-label" >Insert doc file</label>
@@ -187,12 +187,12 @@
         </div>
 
   <!-- Button -->
-  <div class="form-group">
-    <label class="col-md-8 col-md-offset-2 control-label"></label>
-      <div class="col-md-8 col-md-offset-2 inputGroupContainer">
-  <input type="submit" Value="Submit" class="btn btn-primary">
+    <div class="form-group">
+        <label class="col-md-8 col-md-offset-2 control-label"></label>
+        <div class="col-md-8 col-md-offset-2 inputGroupContainer">
+          <input type="submit" Value="Submit" class="btn btn-primary">
+        </div>
     </div>
-  </div>
 </form>
     </div>
 

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('depertment');
             $table->string('area_of_interest');
             $table->string('image');
-            $table->boolean('status');
+            $table->boolean('status'); //1==user 0 ==reviwer
         });
     }
 

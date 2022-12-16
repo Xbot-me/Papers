@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('content')
-<div class="container">
+<div class="">
   <br> <br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Admin Login</div>
+        <div class="">
+            <div class="flex items-center justify-center ">
+                <div class="bg-red-100 w-96 text-center p-7 rounded-lg mb-7">
+                <div class="panel-heading font-semibold "> Admin Login</div>
 
-                <div class="panel-body">
+                <div class="panel-body ">
                     <form class="form-horizontal" method="POST" action="{{ route('admin.login.submit') }}">
                         {{ csrf_field() }}
 
@@ -58,6 +59,8 @@
                             </div>
                         </div>
                     </form>
+                </div>
+
                 </div>
             </div>
         </div>

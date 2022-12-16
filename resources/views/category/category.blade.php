@@ -34,7 +34,7 @@
             <form action="{{ route('delete.destroy', $categories->id) }}" method="POST">
                 @csrf
                 @method('delete')
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-success bg-red-500">Delete</button>
             </form>
         </b>
         </td>
@@ -48,7 +48,7 @@
     @else
       <div class="col-md-8 col-md-offset-2">
         <div class="panel-heading"><h3>You don't have any Category yet.</h3>
-        <a href="category/create" class="btn btn-primary">create now</a>
+        <a href="category/create" class="btn btn-primary bg-green-700">create now</a>
         </div>
       </div>
   @endif

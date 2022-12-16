@@ -1,4 +1,4 @@
 @extends('layouts.app')
     @section('content')
-        {{dd($journal)}}
+      <h1> Reviewer </h1>
     @endsection

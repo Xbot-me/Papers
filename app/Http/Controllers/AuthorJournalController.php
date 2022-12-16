@@ -12,14 +12,12 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthorJournalController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index(){
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('journal.journal')->with('journal',$user->journals);
+        //$user_id = auth()->user()->id;
+        $user = Journal::get();
+        // dd($user);
+        return view('journal.journal')->with('journal',$user);
     }
     public function create(){
         $categories = Category::all();

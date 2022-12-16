@@ -8,7 +8,7 @@ use App\Http\Controllers\ReviewerController;
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\AdminLoginController;
 use App\Models\Category;
 use App\Models\Journal;
 use App\Models\User;
@@ -24,7 +24,7 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Guest routes
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/all-categories',[HomeController::class,'category'])->name('category');
 Route::get('/all-papers',[HomeController::class,'allpapers'])->name('allpapers');
@@ -33,6 +33,11 @@ Route::get('/instructions',[HomeController::class,'instruction'])->name('instruc
 Route::get('/editorialmember',[HomeController::class,'editorialmember'])->name('editorialmember');
 
 Route::get('/paperview/{id}',[HomeController::class,'paperview'])->name('paperview');
+
+
+
+
+
 
 
 Route::get('/admindashboard', function () {
@@ -45,7 +50,7 @@ Route::get('/dashboard', function () {
     $categoryCount = Category::all()->count();
     $author = User::all()->count();
     return view('dashboard')->with('paperCount',$paperCount)->with('categoryCount',$categoryCount)->with('author',$author);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/researcher-dashboard', function () {
     return view('researcher-dashboard');
@@ -67,7 +72,9 @@ require __DIR__.'/auth.php';
 
 Route::get('/admin/login',[AdminLoginController::class,'showLoginPage'])->name('admin.login');
 Route::post('/admin/login',[AdminLoginController::class,'login'])->name('admin.login.submit');
-
+Route::get('/admin/dashbaord',[AdminLoginController::class,'showDashboard'])->middleware('adminauth')->name('admin.dashboard');
+Route::post('admin/logout', [AdminLoginController::class, 'destroy'])
+->name('admin.logout');
 //journal routes
 
 Route::get('/journals',[AuthorJournalController::class,'index']);
@@ -78,14 +85,34 @@ Route::post('/journals',[AuthorJournalController::class,'store']);
 
 //Categoris Route
 
-Route::get('/categories',[CategoryController::class,'index']);
-Route::get('/category/create',[CategoryController::class,'create']);
-Route::get('/category/{id}',[CategoryController::class,'show']);
-Route::post('/category',[CategoryController::class,'store']);
-Route::get('/category/{id}',[CategoryController::class,'edit']);
-Route::post('/category/{id}',[CategoryController::class,'update']);
-Route::delete('/delete/{id}',[CategoryController::class,'destroy'])->name('delete.destroy');
+Route::get('admin/categories',[CategoryController::class,'index'])->name('viewcategory');
+Route::get('admin/category/create',[CategoryController::class,'create'])->name('createcategory');
+Route::get('admin/category/{id}',[CategoryController::class,'show']);
+Route::post('admin/category',[CategoryController::class,'store']);
+Route::get('admin/category/{id}',[CategoryController::class,'edit']);
+Route::post('admin/category/{id}',[CategoryController::class,'update']);
+Route::delete('admin/delete/{id}',[CategoryController::class,'destroy'])->name('delete.destroy');
 
 //Reviewer Routes
 
-Route::get('/reviewer',[ReviewerController::class,'index']);
+Route::get('admin/reviewers',[ReviewerController::class,'index'])->name('viewreviewer');
+Route::get('admin/reviewers/create',[ReviewerController::class,'create'])->name('createreviewer');
+Route::get('admin/reviewers/{id}',[ReviewerController::class,'show']);
+Route::post('admin/reviewers',[ReviewerController::class,'store']);
+Route::get('admin/reviewers/{id}/edit',[ReviewerController::class,'edit']);
+Route::delete('admin/reviewers/{id}',[ReviewerController::class,'destroy']);
+Route::post('admin/reviewers/{id}',[ReviewerController::class,'update']);
+
+//assign routes
+
+Route::get('/admin/assigns',[AssignController::class,'index']);
+Route::post('/admin/assigns/{id}',[AssignController::class,'updateStatus']);
+Route::post('/admin/assigns/',[AssignController::class,'search']);
+
+
+
+
+
+
+
+

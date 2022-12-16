@@ -22,7 +22,7 @@ class Journal extends Model
     }
     public function reviewer()
     {
-        return $this->belongsTo(Reviewer::class);
+        return $this->hasMany(Reviewer::class);
     }
-    
+
 }
