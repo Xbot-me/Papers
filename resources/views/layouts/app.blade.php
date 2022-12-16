@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    @if (!auth()->guard('web')->user())
+    @if (!auth()->guard('web')->check())
     <title>Admin Dashboard</title>
     @else
     <title>Researcher Dashboard</title>
@@ -98,10 +98,14 @@
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div> --}}
+                    @if (auth()->guard('web')->check())
                     <a href="/journals/create" class="nav-item nav-link"><i class="fa fa-pen"></i><span class="text-white text-l pl-2">Create a Journal</span> </a>
-
+                    @endif
+                    @if (auth()->guard('web')->check())
                     <a href="/dashboard" class="nav-item nav-link"><i class="fa fa-book"></i> <span class="text-white text-l pl-2">View Your Journals</span> </a>
-
+                    @else
+                    <a href="{{ route('journals.pending') }}" class="nav-item nav-link"><i class="fa fa-book"></i> <span class="text-white text-l pl-2">Pending Journals</span> </a>
+                    @endif
                     <a href="/journals" class="nav-item nav-link"><i class="fa fa-globe"></i> <span class="text-white text-l pl-2">Browse All Journals</span> </a>
 
                     @if(!auth()->guard('web')->user())

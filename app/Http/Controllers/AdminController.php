@@ -19,7 +19,25 @@ class AdminController extends Controller
         $userShow = User::count();
         $journalShow = Journal::count();
         $reviewerShow = Reviewer::count();
-        
+
         return view('admin.dashborad',compact('userShow','journalShow','reviewerShow'));
+    }
+
+    public function pending()
+    {
+        $journals = Journal::where('status',false)->get();
+        return view('admin.pendingJournals',compact('journals'));
+    }
+    public function approve ($id)
+    {
+        $journal =Journal::find($id);
+       // dd($journal->title);
+        if($journal->status == false){
+            $journal->status = true;
+            $journal->save();
+            return redirect()->back();
+        }
+        return redirect()->back();
+
     }
 }

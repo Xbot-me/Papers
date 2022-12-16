@@ -72,7 +72,9 @@
             <h3 class="bg-indigo-800 text-xl font-bold p-1 text-white ">Featured Papers</h3>
             <ul class="text-left pl-10 list-disc mt-2">
                 @foreach ($journals as $journal)
+                @if ($journal->status)
                 <a href="/paperview/{{ $journal->id }}"><li  class=" text-l ">{{ $journal->jtitle }}</li></a>
+                @endif
                 @endforeach
 
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('journals_images', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->bigIncrements('id');
             $table->unsignedInteger('journal_id')->references('id')->on('journals');
             $table->string('image')->nullable();
             $table->string('pdf')->nullable();

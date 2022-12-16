@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('a4lname')->nullable();
             $table->string('a4affiliation')->nullable();
             $table->string('a4email')->nullable();
+            $table->boolean('status');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->unsignedBigInteger('category_id');

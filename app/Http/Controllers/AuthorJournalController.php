@@ -15,9 +15,9 @@ class AuthorJournalController extends Controller
 
     public function index(){
         //$user_id = auth()->user()->id;
-        $user = Journal::get();
-        // dd($user);
-        return view('journal.journal')->with('journal',$user);
+        $journals = Journal::where('status',true)->get();
+         //dd(auth()->guard('web')->check());
+        return view('journal.journal')->with('journals',$journals);
     }
     public function create(){
         $categories = Category::all();
@@ -51,9 +51,11 @@ class AuthorJournalController extends Controller
         $journal->a4email = $request->input('a4email');
         $journal->category_id = $request->category_id;
         $journal->user_id = auth()->user()->id;
+        $journal->status = false;
         $journal->save();
 
         $journalId = $journal->id;
+        //dd($journal->user_id);
         if($request->hasFile('image')){
             $file = $request->file('image');
             $takeFile = $file->getClientOriginalName();

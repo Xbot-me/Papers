@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthorJournalController;
@@ -75,12 +76,18 @@ Route::post('/admin/login',[AdminLoginController::class,'login'])->name('admin.l
 Route::get('/admin/dashbaord',[AdminLoginController::class,'showDashboard'])->middleware('adminauth')->name('admin.dashboard');
 Route::post('admin/logout', [AdminLoginController::class, 'destroy'])
 ->name('admin.logout');
+//admin journal
+Route::get('admin/journals/pending',[AdminController::class,'pending'])->middleware('adminauth')->name('journals.pending');
+Route::put('/journal/{id}/approve',[AdminController::class,'approve'])->middleware('adminauth')->name('journal.approve');
+
+
+
 //journal routes
 
 Route::get('/journals',[AuthorJournalController::class,'index']);
-Route::get('/journals/create',[AuthorJournalController::class,'create']);
+Route::get('/journals/create',[AuthorJournalController::class,'create'])->middleware('auth','verified');
 Route::get('/journals/{id}',[AuthorJournalController::class,'show']);
-Route::post('/journals',[AuthorJournalController::class,'store']);
+Route::post('/journals',[AuthorJournalController::class,'store'])->middleware('auth','verified');
 
 
 //Categoris Route
