@@ -19,13 +19,20 @@
         {{-- $journal = substr($journalsmall, 0, 150); --}}
             @foreach ($journals as $journal)
 
+          @php
+                $journal_ab = substr($journal->abstract, 0, 150);
+          @endphp
+
+
+
+
 
             <div class="bg-indigo-200 mb-3  w-full pt-6 rounded-2xl">
 
                 <div class="text-left  p-3">
                   <p><span class="font-bold">  Paper Title :</span> {{ $journal->jtitle }} </p>
                   <p> <span class="font-bold">Author :</span>{{ $journal->a1fname }}</p>
-                  <p><span class="font-bold">Description :</span>{{ $journal->abstract }} </p>
+                  <p><span class="font-bold">Description :</span>{{ $journal_ab}} </p>
                   <p><span class="font-bold">Date :</span>{{ $journal->jcreated_at }} </p>
                   <button class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold sm:py-2 mb-3 p-2 sm:px-4 mr-4 border rounded">
                      Read Now

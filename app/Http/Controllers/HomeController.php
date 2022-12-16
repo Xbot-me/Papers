@@ -71,8 +71,8 @@ class HomeController extends Controller
                         'journals.keywards as keywards',
                         'journals.a1fname as a1fname',
                         'journals.a1lname as a1lname')
-                        ->orderBy('journals.created_at','desc')
-                        ->paginate(5);
+                        ->orderBy('journals.created_at','desc')->get();
+
 
                        // dd($journals);
         return view('allpapers')->with('journals',$journals)->with('category',$category);
